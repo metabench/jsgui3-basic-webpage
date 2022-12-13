@@ -3,8 +3,8 @@
     "main": "basic_webpage.js",
     "license": "MIT",
     "dependencies": {
-        "jsgui3-html": "^0.0.107",
-        "lang-tools": "^0.0.11",
+        "jsgui3-html": "^0.0.110",
+        "lang-tools": "^0.0.13",
         "obext": "^0.0.24"
     },
     "scripts": {

@@ -4,20 +4,25 @@ const {prop, field} = require('obext');
 const Basic_Webpage_Top_Bar = require('./top_bar');
 const Basic_Webpage_Section = require('./section.js');
 
-
 // Webpage plugins could help.
 // . Or maybe they are a type of Control.
 // . Not only rendered to one part of the DOM.
 // .  Could have a different rendering / document interaction strategy.
 
+// Seems more like it should extend the Webpage class from jsgui3-server?
+//  This is more of a webpage html control, maybe it should be clearer.
+
+// Possibly a webpage contains images which don't correspond directly to the HTML document?
+//  Webpage could be a higher level abstraction. May be useful in some cases, worth having that level even if not used to start with.
+
+
 class Basic_Webpage extends Client_HTML_Document {
-    constructor(spec) {
+    constructor(spec = {}) {
         super(spec);
 
         // Title field / property.
         // . Property should be best I think.
         // . Already going for a simple abstraction over Client_HTML_Document which is more implementation specific in character.
-
 
         this.on('change', (e_change) => {
             const {name, value} = e_change;
@@ -27,8 +32,6 @@ class Basic_Webpage extends Client_HTML_Document {
                 // .  Example code would help.
                 // .  Readme files showing it.
                 // . Within jsgui-html, not sure how close to the core.
-
-                
 
             }
         })
@@ -40,8 +43,6 @@ class Basic_Webpage extends Client_HTML_Document {
 				value
 			} = e_change;
 
-
-
             this.raise('change', {
                 'name': 'title',
                 'value': e_change.value
@@ -49,8 +50,8 @@ class Basic_Webpage extends Client_HTML_Document {
 
 		});
 
-        console.log('spec.title', spec.title);
-        console.log('this.title', this.title);
+        //console.log('spec.title', spec.title);
+        //console.log('this.title', this.title);
 
         if (this.title) {
             //const titles = this.$match(ctrl => ctrl.dom.tag_name === 'title');
@@ -76,9 +77,7 @@ class Basic_Webpage extends Client_HTML_Document {
         const tb = new Basic_Webpage_Top_Bar({
             title: this.title,
             context: this.context
-        })
-
-        
+        });
 
         this.body.add(tb);
         this.top_bar = tb;
@@ -102,8 +101,6 @@ class Basic_Webpage extends Client_HTML_Document {
             context: this.context
         });
         this.body.add(next_section);
-
-
     }
 }
 
